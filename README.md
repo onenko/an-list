@@ -64,10 +64,6 @@ AN_LIST_InsertB4( & seed, px);
 for( px = seed->pnext; px != seed; px = px->pnext)
 { ... }
 
-// Go through all objects of a list - alternative
-for_AN_LIST_Elements( & seed, px)
-{ ... }
-
 // Empty a list
 while( ! AN_LIST_IsEmpty( & seed))
 {
@@ -75,6 +71,14 @@ while( ! AN_LIST_IsEmpty( & seed))
     AN_LIST_Exclude( px);
     free( px);    // or leave alive if you want
 }
+```
+
+Implementation header also contains two optional helper macroses:
+
+```C
+// Go through all objects of a list
+for_AN_LIST_Elements( & seed, px)
+{ ... }
 
 // Safe traversing with delete
 struct X * px, * pxn;
