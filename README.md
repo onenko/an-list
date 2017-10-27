@@ -77,8 +77,8 @@ while( ! AN_LIST_IsEmpty( & seed))
 }
 
 // Safe traversing with delete
-strunt X * px, * pxn;
-for_AN_LIST_ElementsSafe(& seed,px,pxn)
+struct X * px, * pxn;
+for_AN_LIST_ElementsSafe( & seed, px, pxn)
 {
     AN_LIST_Exclude( px);
     free( px);
@@ -87,11 +87,10 @@ for_AN_LIST_ElementsSafe(& seed,px,pxn)
 
 ### Limitations (once again)
 
-1. Objects in this list must have pprev and pnext, so you can not use
-3rd party data structures (remember, this is invasive implementation);
+1. An-list can't handle directly any arbitrary structures, because these
+structures must contain member fields * pprev and * pnext (remember, this is invasive implementation);
 2. List head is implemented as element (object) instead of pointer to object;
- so one element is sacrificed to be the head (seed) of a list -
- may be important for big data structures.
+ so one element is sacrificed to be the head (seed) of a list - may be important for big data structures.
 
 Example of bad code - wrong attempt to insert element to end of list:
 ```C
